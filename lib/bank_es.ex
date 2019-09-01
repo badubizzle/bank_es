@@ -24,12 +24,12 @@ defmodule BankEs do
   end
 
   def print_statement(account_number) do
-    {:ok, history} =
+    {:ok, transactions} =
       account_number
       |> EventStore.read_stream_forward()
 
-    %{balance: balance, rows: lines} =
-      history
+    %{balance: closing_balance, rows: lines} =
+      transactions
       |> Enum.reduce(%{balance: 0, rows: []}, fn %RecordedEvent{data: event},
                                                  %{balance: balance, rows: rows} ->
         {amount, description} = BankEs.EventString.for_statement(event)
@@ -46,12 +46,12 @@ defmodule BankEs do
         %{balance: balance + amount, rows: [row | rows]}
       end)
 
-    [["Closing balance", "", "#{balance}"] | lines]
+    [["Closing balance", "", "#{closing_balance}"] | lines]
     |> Enum.reverse()
     |> Table.new(["Details", "Dr", "Cr"])
     |> Table.put_column_meta(1, color: :red)
     |> Table.put_column_meta(2, color: :green)
-    |> Table.put_cell_meta(0, Enum.count(lines), color: :green)
+    # |> Table.put_cell_meta(0, Enum.count(lines), color: :green)
     |> Table.render!()
     |> IO.puts()
   end
