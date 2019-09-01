@@ -2,7 +2,7 @@ defmodule BankEs.Middleware.CommandLogger do
   @behaviour Commanded.Middleware
 
   alias Commanded.Middleware.Pipeline
-  import Pipeline
+  alias Pipeline
 
   def before_dispatch(%Pipeline{command: command} = pipeline) do
     IO.puts("Received commnad #{inspect(command)}")

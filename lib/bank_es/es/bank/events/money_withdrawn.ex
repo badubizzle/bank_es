@@ -3,7 +3,7 @@ defmodule BankEs.Events.MoneyWithdrawn do
   defstruct [:account_number, :amount, :transfer_uuid]
 
   defimpl BankEs.EventString, for: __MODULE__ do
-    def to_event_string(%{amount: amount}) do
+    def to_event_string(%{amount: _amount}) do
       "Withdrawal"
     end
 

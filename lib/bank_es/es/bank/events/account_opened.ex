@@ -3,7 +3,7 @@ defmodule BankEs.Events.BankAccountOpened do
   defstruct [:account_number, :initial_balance]
 
   defimpl BankEs.EventString, for: __MODULE__ do
-    def to_event_string(%{initial_balance: balance}) do
+    def to_event_string(%{initial_balance: _balance}) do
       "Opening balance"
     end
 
