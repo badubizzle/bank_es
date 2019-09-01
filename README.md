@@ -1,6 +1,6 @@
 # BankEs
 
-## Example EventSourcing and CQRS application in Elixir
+## EventSourcing and CQRS application in Elixir
 
 To start your Phoenix server:
 
