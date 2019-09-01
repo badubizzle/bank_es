@@ -19,4 +19,4 @@ iex(6)> {:ok, account} = BankEs.withdraw_money(account.account_number, 250)
 iex(7)> BankEs.print_statement(account.account_number)
 ```
 
-<img src="statement.png" align="left"  width="800" >
+<img src="statement.png" align="left"  width="400" >
